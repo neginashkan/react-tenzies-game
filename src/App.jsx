@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { nanoid } from "nanoid";
 import Dice from "./components/Dice";
 import "./CSS/styles.css";
 function App() {
@@ -7,13 +8,15 @@ function App() {
     let newDice = [];
     for (let i = 1; i < 11; i++) {
       const randomNumber = Math.floor(Math.random() * 6 + 1);
-      newDice.push(randomNumber);
+      newDice.push({ value: randomNumber, isChecked: false, id: nanoid() });
     }
     return newDice;
   }
   function rollTheDice(event) {
     event.preventDefault();
-    setDice(generateRandomNewDice());
+    setDice((pervDice) => {
+      return generateRandomNewDice();
+    });
   }
   return (
     <div className="App">

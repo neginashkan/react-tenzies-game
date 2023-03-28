@@ -84,6 +84,7 @@ body {
   border: none;
   cursor: pointer;
   width: 100%;
+  font-family: inherit;
 }
 .die-button {
   max-width: 35.84px;

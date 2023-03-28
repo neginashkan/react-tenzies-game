@@ -1,7 +1,9 @@
-function Die({ value }) {
+function Die({ value, isChecked }) {
   return (
     <div className="Die">
-      <button className="die-button">{value}</button>
+      <button className={`die-button ${isChecked && "checked"}`}>
+        {value}
+      </button>
     </div>
   );
 }
