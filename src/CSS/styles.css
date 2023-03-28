@@ -30,7 +30,7 @@ body {
 }
 .Main {
   max-width: 360px;
-  height: 70vh;
+  height: 400px;
   width: 100%;
   border-radius: 10px;
   background-color: var(--secondary-background-color);

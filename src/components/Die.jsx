@@ -1,7 +1,10 @@
-function Die({ value, isChecked }) {
+function Die({ value,isHeld, id, handleClick }) {
   return (
     <div className="Die">
-      <button className={`die-button ${isChecked && "checked"}`}>
+      <button
+        onClick={() => handleClick(id)}
+        className={`die-button ${isHeld && "checked"}`}
+      >
         {value}
       </button>
     </div>

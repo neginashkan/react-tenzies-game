@@ -8,14 +8,23 @@ function App() {
     let newDice = [];
     for (let i = 1; i < 11; i++) {
       const randomNumber = Math.floor(Math.random() * 6 + 1);
-      newDice.push({ value: randomNumber, isChecked: false, id: nanoid() });
+      newDice.push({
+        value: randomNumber,
+        isHeld: false,
+        id: nanoid(),
+      });
     }
     return newDice;
   }
   function rollTheDice(event) {
     event.preventDefault();
+    setDice(generateRandomNewDice());
+  }
+  function holdDice(id) {
     setDice((pervDice) => {
-      return generateRandomNewDice();
+      return pervDice.map(die=>{
+        return die.id===id ? { ...die, isHeld: !die.isHeld} : die
+      })
     });
   }
   return (
@@ -26,7 +35,7 @@ function App() {
           Roll until all dice are the same. Click each die to freeze it at its
           current value between rolls.
         </p>
-        <Dice diceArray={dice} />
+        <Dice diceArray={dice} holdDice={holdDice} />
         <button className="roll-button" onClick={rollTheDice}>
           Roll
         </button>
