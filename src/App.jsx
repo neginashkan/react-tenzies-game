@@ -3,28 +3,36 @@ import { nanoid } from "nanoid";
 import Dice from "./components/Dice";
 import "./CSS/styles.css";
 function App() {
-  const [dice, setDice] = useState(generateRandomNewDice());
-  function generateRandomNewDice() {
+  const [dice, setDice] = useState(allNewDice());
+  function generateNewDie() {
+    const randomNumber = Math.floor(Math.random() * 6 + 1);
+    return {
+      value: randomNumber,
+      isHeld: false,
+      id: nanoid(),
+    };
+  }
+  function allNewDice() {
     let newDice = [];
     for (let i = 1; i < 11; i++) {
-      const randomNumber = Math.floor(Math.random() * 6 + 1);
-      newDice.push({
-        value: randomNumber,
-        isHeld: false,
-        id: nanoid(),
-      });
+      newDice.push(generateNewDie());
     }
     return newDice;
   }
-  function rollTheDice(event) {
+
+  function rollDice(event) {
     event.preventDefault();
-    setDice(generateRandomNewDice());
+    setDice((pervDice) => {
+      return pervDice.map((die) => {
+        return die.isHeld ? die : generateNewDie();
+      });
+    });
   }
   function holdDice(id) {
     setDice((pervDice) => {
-      return pervDice.map(die=>{
-        return die.id===id ? { ...die, isHeld: !die.isHeld} : die
-      })
+      return pervDice.map((die) => {
+        return die.id === id ? { ...die, isHeld: !die.isHeld } : die;
+      });
     });
   }
   return (
@@ -36,7 +44,7 @@ function App() {
           current value between rolls.
         </p>
         <Dice diceArray={dice} holdDice={holdDice} />
-        <button className="roll-button" onClick={rollTheDice}>
+        <button className="roll-button" onClick={rollDice}>
           Roll
         </button>
       </main>
