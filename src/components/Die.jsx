@@ -1,7 +1,7 @@
-function Die() {
+function Die({ value }) {
   return (
     <div className="Die">
-      <button className="die-button">1</button>
+      <button className="die-button">{value}</button>
     </div>
   );
 }
