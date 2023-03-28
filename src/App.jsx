@@ -1,9 +1,15 @@
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import { nanoid } from "nanoid";
 import Dice from "./components/Dice";
 import "./CSS/styles.css";
 function App() {
   const [dice, setDice] = useState(allNewDice());
+  useEffect(()=>{
+    dice.forEach(die=>{
+      
+    })
+  },dice)
+  const [tenzies, setTenzies] = useState(false);
   function generateNewDie() {
     const randomNumber = Math.floor(Math.random() * 6 + 1);
     return {
