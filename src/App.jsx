@@ -1,15 +1,25 @@
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import { nanoid } from "nanoid";
 import Dice from "./components/Dice";
 import "./CSS/styles.css";
 function App() {
   const [dice, setDice] = useState(allNewDice());
-  useEffect(()=>{
-    dice.forEach(die=>{
-      
-    })
-  },dice)
+
   const [tenzies, setTenzies] = useState(false);
+
+  useEffect(() => {
+    let numbers = [];
+    dice.forEach((die) => {
+      if (die.isHeld) {
+        numbers.push(die.value);
+      }
+    });
+    const isAllSame = numbers.every((number) => number === numbers[0]);
+    if (isAllSame && numbers.length === 10) {
+      setTenzies(true)
+    }
+  }, dice);
+
   function generateNewDie() {
     const randomNumber = Math.floor(Math.random() * 6 + 1);
     return {
@@ -18,6 +28,7 @@ function App() {
       id: nanoid(),
     };
   }
+
   function allNewDice() {
     let newDice = [];
     for (let i = 1; i < 11; i++) {
@@ -34,6 +45,7 @@ function App() {
       });
     });
   }
+
   function holdDice(id) {
     setDice((pervDice) => {
       return pervDice.map((die) => {
