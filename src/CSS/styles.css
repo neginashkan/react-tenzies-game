@@ -111,3 +111,7 @@ body {
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: repeat(2, 1fr);
 }
+.roll-button.new-game{
+    font-size: 0.7rem;
+  line-height: 0.8rem;
+}
