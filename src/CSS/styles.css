@@ -93,16 +93,13 @@ body {
   font-size: 1.287rem;
   line-height: 1.5rem;
   border-radius: 3.81277px;
-  background-color: var(--unchecked-box-color);
+  background-color: transparent;
   box-shadow: var(--die-box-shadow);
   margin-bottom: 1.188em;
 }
-.die-button:hover,
-.die-button:focus {
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-}
-.die-button.checked {
-  background-color: var(--checked-box-color);
+
+.die-button.checked .die-icon {
+  color: var(--checked-box-color);
 }
 
 .Dice-Container {
@@ -111,7 +108,12 @@ body {
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: repeat(2, 1fr);
 }
-.roll-button.new-game{
-    font-size: 0.7rem;
+.roll-button.new-game {
+  font-size: 0.7rem;
   line-height: 0.8rem;
+}
+
+.die-icon {
+  color: var(--primary-background-color);
+  font-size: 2.6rem;
 }
